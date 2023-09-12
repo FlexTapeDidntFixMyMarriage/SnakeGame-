@@ -2,6 +2,11 @@
 #include <conio.h>
 #include <windows.h>
 
+#define KEY_UP 72
+#define KEY_DOWN 80
+#define KEY_LEFT 75
+#define KEY_RIGHT 77
+
 using namespace std;
 
 bool gameOver;
@@ -41,7 +46,7 @@ void Draw() {
 				cout << "#";
 			}
 			else if (i == y && j == x) {
-				cout << "ö";
+				cout << "Ã¶";
 			}
 			else if (i == fruitY && j == fruitX) {
 				cout << "@";
@@ -67,32 +72,38 @@ void Draw() {
 	  cout << endl;
 	  cout << "Score: " << score << endl;
 };
+
 void Input() {
 	if (_kbhit()) {
-		switch (_getch()) {
+		char input = _getch();
 
+		switch (input) {
 		case 'w':
+		case KEY_UP:
 			dir = UP;
 			break;
 
 		case 'a':
+		case KEY_LEFT:
 			dir = LEFT;
 			break;
 
 		case 's':
+		case KEY_DOWN:
 			dir = DOWN;
 			break;
 
 		case 'd':
+		case KEY_RIGHT:
 			dir = RIGHT;
 			break;
 
 		default:
 			break;
-
 		}
 	}
-};
+}
+
 void Logic() {
 
 	int prevX = tailX[0];
